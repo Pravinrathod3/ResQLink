@@ -1,0 +1,33 @@
+[
+    {
+      "name": "Rahul Sharma",
+      "phone": "+91-9876543210",
+      "skills": ["Fire Team", "First Aid"],
+      "location": { "latitude": 28.6139, "longitude": 77.2090 }
+    },
+    {
+      "name": "Aisha Khan",
+      "phone": "+91-8765432109",
+      "skills": ["Engineer", "Structural Assessment"],
+      "location": { "latitude": 19.0760, "longitude": 72.8777 }
+    },
+    {
+      "name": "Vikram Patel",
+      "phone": "+91-7654321098",
+      "skills": ["Medical", "Paramedic"],
+      "location": { "latitude": 22.5726, "longitude": 88.3639 }
+    },
+    {
+      "name": "Meera Nair",
+      "phone": "+91-6543210987",
+      "skills": ["Logistics", "Rescue Operations"],
+      "location": { "latitude": 13.0827, "longitude": 80.2707 }
+    },
+    {
+      "name": "Arjun Reddy",
+      "phone": "+91-5432109876",
+      "skills": ["Communication", "Drone Surveillance"],
+      "location": { "latitude": 17.3850, "longitude": 78.4867 }
+    }
+  ]
+  

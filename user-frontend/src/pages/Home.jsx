@@ -1,56 +1,69 @@
-import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectItem } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 
-export default function EmergencyHomePage() {
-  const [showForm, setShowForm] = useState(false);
-  const [emergencyType, setEmergencyType] = useState("");
-  const [description, setDescription] = useState("");
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Emergency Type:", emergencyType);
-    console.log("Description:", description);
-    alert("Emergency reported successfully!");
-    setShowForm(false);
-    setEmergencyType("");
-    setDescription("");
-  };
+
+const EmergencyHomePage = () => {
+  const steps = [
+    { step: "1️⃣", title: "Submit Your Request", desc: "Provide details and your location." },
+    { step: "2️⃣", title: "Get Matched", desc: "Our system connects you to available support." },
+    { step: "3️⃣", title: "Receive Assistance", desc: "Track updates and get real-time help." },
+  ];
+
+  const resources = [
+    { title: "🏥 Nearby Hospitals", desc: "Find emergency medical assistance near you." },
+    { title: "🏠 Relief Shelters", desc: "Locate shelters providing food & safety." },
+    { title: "📞 Helpline Numbers", desc: "Connect with emergency support services." },
+  ];
+
+  const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <Card className="p-6 max-w-lg w-full shadow-xl">
-        <CardContent className="flex flex-col items-center">
-          <h1 className="text-2xl font-bold mb-4">Disaster Response Hub</h1>
-          <p className="text-gray-600 mb-4 text-center">
-            Click below if you need emergency assistance.
-          </p>
-          {!showForm ? (
-            <Button onClick={() => setShowForm(true)}>Request Emergency Help</Button>
-          ) : (
-            <form onSubmit={handleSubmit} className="w-full mt-4">
-              <label className="block mb-2 font-semibold">Emergency Type</label>
-              <Select value={emergencyType} onChange={(e) => setEmergencyType(e.target.value)}>
-                <SelectItem value="fire">Fire</SelectItem>
-                <SelectItem value="flood">Flood</SelectItem>
-                <SelectItem value="earthquake">Earthquake</SelectItem>
-                <SelectItem value="medical">Medical Emergency</SelectItem>
-                <SelectItem value="other">Other</SelectItem>
-              </Select>
-              <label className="block mt-4 mb-2 font-semibold">Description (Optional)</label>
-              <Textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Describe the emergency..."
-              />
-              <Button type="submit" className="mt-4 w-full">Submit</Button>
-            </form>
-          )}
-        </CardContent>
-      </Card>
+    <div>
+      {/* Hero Section */}
+      <section className="flex flex-col items-center justify-center text-center p-10 bg-blue-600 text-white">
+        <h1 className="text-4xl font-bold mb-4">Get Help When You Need It Most</h1>
+        <p className="text-lg mb-6">
+          Request assistance, track support, and find emergency resources in real-time.
+        </p>
+        <div className="flex gap-4">
+          <button onClick={() => navigate("/reguest-help")} className="bg-red-500 px-6 py-3 rounded-lg font-semibold hover:bg-red-600">
+            🆘 Request Help
+          </button>
+          <button className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200">
+            🔍 Track My Request
+          </button>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="p-10 bg-gray-100">
+        <h2 className="text-3xl font-bold text-center mb-6">How It Works</h2>
+        <div className="grid md:grid-cols-3 gap-6 text-center">
+          {steps.map(({ step, title, desc }, index) => (
+            <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-2xl font-bold">{step}</h3>
+              <h4 className="text-xl font-semibold mt-2">{title}</h4>
+              <p className="text-gray-600 mt-2">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Emergency Resources Section */}
+      <section className="p-10 bg-white">
+        <h2 className="text-3xl font-bold text-center mb-6">Emergency Resources</h2>
+        <div className="grid md:grid-cols-3 gap-6 text-center">
+          {resources.map(({ title, desc }, index) => (
+            <div key={index} className="bg-blue-100 p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold">{title}</h3>
+              <p className="text-gray-700 mt-2">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
-}
+};
+
+export default EmergencyHomePage;
